@@ -1,0 +1,84 @@
+*{
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.calculator{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border: 2px solid grey;
+  box-sizing: content-box;
+  height: 650px;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.calculator,
+.screenDiv {
+  width: 400px;
+}
+
+.btnDiv {
+  height: 100px;
+}
+
+.screenDiv {
+  height: 50px;
+}
+
+.resultDiv{
+  height: 100px;
+  font-size: 2em;
+}
+
+.screenDiv,
+.resultDiv{
+  background-color: #282c34;
+  color: white;
+}
+
+.btnDiv{
+  width: 100px;
+  border: 1px solid rgb(128, 32, 58);
+  transition: all 0.3s ease;
+}
+
+.btnDiv:active {
+  background-color:  rgb(189, 92, 118);
+}
+
+.btnDiv h2{
+  margin-top: 2rem;
+}
+
+.triple {
+  width: 300px;
+}
+
+.redBtn {
+  background-color:  rgb(186, 34, 74);
+  color: white;
+}
