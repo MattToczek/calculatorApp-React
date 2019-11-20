@@ -57,7 +57,7 @@ class App extends React.Component  {
           break;
   
      } 
-     
+
   }
 
 
@@ -66,7 +66,7 @@ class App extends React.Component  {
     if (event.target.innerText === "=") {
       this.setState({
         num2 : this.state.temp.join(''),
-        screen: []
+        screen: [],
       })
 
 
@@ -102,6 +102,8 @@ class App extends React.Component  {
     } else {
       this.operator(event);
     }
+  
+  
 
   }
 
@@ -115,42 +117,49 @@ class App extends React.Component  {
     console.log("My num2 is: " + this.state.num2);
 
     let result = 0;
-    const getResult = () => {
-      return result;
-    }
+
 
     switch (this.state.opp) {
       case 1:
           console.log(this.state.opp);
           console.log("state num1 is " + this.state.num1)
           console.log("state num2 is " + this.state.num2)
+        if (this.state.num2 != "") {
+          result = parseInt(this.state.num1) + parseInt(this.state.num2)
+        }
         
-        result = parseInt(this.state.num1) + parseInt(this.state.num2)
         console.log("My result is", result);  
-        getResult();
+
         break
 
       case 2:
-        result = parseInt(this.state.num1) / parseInt(this.state.num2)
+        if (this.state.num2 != "") {
+          result = parseInt(this.state.num1) / parseInt(this.state.num2)
+        }
         console.log("My result is", result);
-        getResult();
+
         break
 
       case 3:
-        result = parseInt(this.state.num1) - parseInt(this.state.num2)
+        if (this.state.num2 != "") {
+          result = parseInt(this.state.num1) - parseInt(this.state.num2)
+        }
         console.log("My result is", result);
-        getResult();
+
         break
 
       case 4:
-        result = parseInt(this.state.num1) * parseInt(this.state.num2)
+        if (this.state.num2 != "") {
+          result = parseInt(this.state.num1) * parseInt(this.state.num2)
+        }
         console.log("My result is", result);
-        getResult();
+
         break
 
       default:
         break;
     }
+
 
     return (
       <div className="App">
