@@ -78,6 +78,21 @@ class App extends React.Component  {
     }
   }
 
+  secondCheck = ()=> {
+    if (this.state.screen2 != "") {
+      let lastOpp = this.state.screen.pop();
+    this.setState({
+      num1: this.state.screen2,
+      screen: [this.state.screen2, lastOpp],
+      screen2: ""
+    }) 
+    }
+  console.log("done");
+  }
+
+  check = async ()=>{
+    await this.secondCheck();
+  }
 
   equalsOrOpp =  async(event) => {
     await this.set(event);
@@ -86,93 +101,64 @@ class App extends React.Component  {
       switch (this.state.opp) {
         case 1:
           if (this.state.num2 != "") {
-              console.log(this.state.opp);
-              console.log("state num1 is " + this.state.num1)
-              console.log("state num2 is " + this.state.num2)
             this.setState({
-              screen2:parseInt(this.state.num1) + parseInt(this.state.num2)
+              screen2:parseInt(this.state.num1) + parseInt(this.state.num2),
+              num1: '',
+              num2: ''
             }) 
+          }else{
+
+          this.check()
           }
           break
         case 2:
           if (this.state.num2 != "") {
             this.setState({
-              screen2:parseInt(this.state.num1) / parseInt(this.state.num2)
+              screen2:parseInt(this.state.num1) / parseInt(this.state.num2),
+              num1: '',
+              num2: ''
             }) 
+          }else{
+
+            this.check()
           }
           break
         case 3:
           if (this.state.num2 != "") {
             this.setState({
-              screen2:parseInt(this.state.num1) - parseInt(this.state.num2)
+              screen2:parseInt(this.state.num1) - parseInt(this.state.num2),
+              num1: '',
+              num2: ''
             }) 
+          }
+          else{
+
+            this.check()
           }
           break
         case 4:
           if (this.state.num2 != "") {
             this.setState({
-              screen2:parseInt(this.state.num1) * parseInt(this.state.num2)
+              screen2:parseInt(this.state.num1) * parseInt(this.state.num2),
+              num1: '',
+              num2: ''
             }) 
+          }else{
+
+            this.check()
           }
           break
         default:
             console.log("Default Triggered")
           break;
       }
-    } 
 
+    } 
   
 
   render(){
     
-    // console.log("My num1 is: " + this.state.num1);
-    // console.log("My opp is: " + this.state.opp);
-    
-    // console.log("My num2 is: " + this.state.num2);
 
-    // let result = 0;
-
-
-    // switch (this.state.opp) {
-    //   case 1:
-    //       console.log(this.state.opp);
-    //       console.log("state num1 is " + this.state.num1)
-    //       console.log("state num2 is " + this.state.num2)
-    //     if (this.state.num2 != "") {
-    //       result = parseInt(this.state.num1) + parseInt(this.state.num2)
-    //     }
-        
-    //     console.log("My result is", result);  
-
-    //     break
-
-    //   case 2:
-    //     if (this.state.num2 != "") {
-    //       result = parseInt(this.state.num1) / parseInt(this.state.num2)
-    //     }
-    //     console.log("My result is", result);
-
-    //     break
-
-    //   case 3:
-    //     if (this.state.num2 != "") {
-    //       result = parseInt(this.state.num1) - parseInt(this.state.num2)
-    //     }
-    //     console.log("My result is", result);
-
-    //     break
-
-    //   case 4:
-    //     if (this.state.num2 != "") {
-    //       result = parseInt(this.state.num1) * parseInt(this.state.num2)
-    //     }
-    //     console.log("My result is", result);
-
-    //     break
-
-    //   default:
-    //     break;
-    // }
 
 
     return (
