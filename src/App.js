@@ -10,6 +10,7 @@ class App extends React.Component  {
     red: true,
     content: ["clear","+",1,2,3,"÷",4,5,6,"-",7,8,9,"x",0,"="],
     screen: [],
+    screen2: "",
     num1: "",
     num2: "",
     opp: 0,
@@ -26,7 +27,12 @@ class App extends React.Component  {
 
   clear = () => {
     this.setState({
-      screen: []
+      screen: [],
+      screen2: "",
+      num1: "",
+      num2: "",
+      opp: 0,
+      temp:[]
     })
   }
 
@@ -60,105 +66,113 @@ class App extends React.Component  {
 
   }
 
-
-  equalsOrOpp =  (event) => {
-    console.log("equals running");
+  set = (event) => {
     if (event.target.innerText === "=") {
-      this.setState({
-        num2 : this.state.temp.join(''),
-        screen: [],
-      })
+    this.setState({
+      num2 : this.state.temp.join(''),
+      screen: [],
+    })
 
-
-
-      
-      // switch (this.state.opp) {
-      //   case 1:
-      //       console.log(this.state.opp);
-      //       console.log("state num1 is " + this.state.num1)
-      //       console.log("state num2 is " + this.state.num2)
-      //     this.setState({
-      //       screen:this.state.num1 + this.state.num2
-      //     }) 
-      //     break
-      //   case 2:
-      //       this.setState({
-      //         screen:this.state.num1 / this.state.num2
-      //       }) 
-      //     break
-      //   case 3:
-      //       this.setState({
-      //         screen:this.state.num1 - this.state.num2
-      //       }) 
-      //     break
-      //   case 4:
-      //       this.setState({
-      //         screen:this.state.num1 * this.state.num2
-      //       }) 
-      //       break
-      //   default:
-      //     break;
-      // }
-    } else {
+  }else {
       this.operator(event);
     }
-  
-  
-
   }
+
+
+  equalsOrOpp =  async(event) => {
+    await this.set(event);
+    // console.log("num2 is now " + this.state.num2);
+    
+      switch (this.state.opp) {
+        case 1:
+          if (this.state.num2 != "") {
+              console.log(this.state.opp);
+              console.log("state num1 is " + this.state.num1)
+              console.log("state num2 is " + this.state.num2)
+            this.setState({
+              screen2:parseInt(this.state.num1) + parseInt(this.state.num2)
+            }) 
+          }
+          break
+        case 2:
+          if (this.state.num2 != "") {
+            this.setState({
+              screen2:parseInt(this.state.num1) / parseInt(this.state.num2)
+            }) 
+          }
+          break
+        case 3:
+          if (this.state.num2 != "") {
+            this.setState({
+              screen2:parseInt(this.state.num1) - parseInt(this.state.num2)
+            }) 
+          }
+          break
+        case 4:
+          if (this.state.num2 != "") {
+            this.setState({
+              screen2:parseInt(this.state.num1) * parseInt(this.state.num2)
+            }) 
+          }
+          break
+        default:
+            console.log("Default Triggered")
+          break;
+      }
+    } 
 
   
 
   render(){
     
-    console.log("My num1 is: " + this.state.num1);
-    console.log("My opp is: " + this.state.opp);
+    // console.log("My num1 is: " + this.state.num1);
+    // console.log("My opp is: " + this.state.opp);
     
-    console.log("My num2 is: " + this.state.num2);
+    // console.log("My num2 is: " + this.state.num2);
 
-    let result = 0;
+    // let result = 0;
 
 
-    switch (this.state.opp) {
-      case 1:
-          console.log(this.state.opp);
-          console.log("state num1 is " + this.state.num1)
-          console.log("state num2 is " + this.state.num2)
-        if (this.state.num2 != "") {
-          result = parseInt(this.state.num1) + parseInt(this.state.num2)
-        }
+    // switch (this.state.opp) {
+    //   case 1:
+    //       console.log(this.state.opp);
+    //       console.log("state num1 is " + this.state.num1)
+    //       console.log("state num2 is " + this.state.num2)
+    //     if (this.state.num2 != "") {
+    //       result = parseInt(this.state.num1) + parseInt(this.state.num2)
+    //     }
         
-        console.log("My result is", result);  
+    //     console.log("My result is", result);  
 
-        break
+    //     break
 
-      case 2:
-        if (this.state.num2 != "") {
-          result = parseInt(this.state.num1) / parseInt(this.state.num2)
-        }
-        console.log("My result is", result);
+    //   case 2:
+    //     if (this.state.num2 != "") {
+    //       result = parseInt(this.state.num1) / parseInt(this.state.num2)
+    //     }
+    //     console.log("My result is", result);
 
-        break
+    //     break
 
-      case 3:
-        if (this.state.num2 != "") {
-          result = parseInt(this.state.num1) - parseInt(this.state.num2)
-        }
-        console.log("My result is", result);
+    //   case 3:
+    //     if (this.state.num2 != "") {
+    //       result = parseInt(this.state.num1) - parseInt(this.state.num2)
+    //     }
+    //     console.log("My result is", result);
 
-        break
+    //     break
 
-      case 4:
-        if (this.state.num2 != "") {
-          result = parseInt(this.state.num1) * parseInt(this.state.num2)
-        }
-        console.log("My result is", result);
+    //   case 4:
+    //     if (this.state.num2 != "") {
+    //       result = parseInt(this.state.num1) * parseInt(this.state.num2)
+    //     }
+    //     console.log("My result is", result);
 
-        break
+    //     break
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
 
 
     return (
@@ -166,7 +180,7 @@ class App extends React.Component  {
         <div className="calculator">
           <div className ="screen">
             <Screen clName ="screenDiv" display = {this.state.screen}/>
-            <Screen display = {result} clName ="resultDiv" />
+            <Screen display = {this.state.screen2} clName ="resultDiv" />
           </div>
           <Btn 
             dispNum = {this.clear}
