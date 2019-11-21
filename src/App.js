@@ -42,7 +42,8 @@ class App extends React.Component  {
       opp: num,
       temp: []
     })
-
+    console.log(`num1 in updateNum is ${this.state.temp.join('')}`);
+    
   }
 
   operator = (event) => {
@@ -78,23 +79,35 @@ class App extends React.Component  {
     }
   }
 
-  secondCheck = ()=> {
-    if (this.state.screen2 != "") {
-      let lastOpp = this.state.screen.pop();
-    this.setState({
-      num1: this.state.screen2,
-      screen: [this.state.screen2, lastOpp],
-      screen2: ""
-    }) 
-    }
-  console.log("done");
-  }
 
-  check = async ()=>{
-    await this.secondCheck();
+  secondCheck =(e)=> {
+
+    
+    if (this.state.screen2 != "" && this.state.screen.length==1) {
+      let lastOpp = e;
+      // let firstOpp = this.state.screen.unshift();
+      // console.log(`fistOpp is ${firstOpp}`);
+
+        this.setState({
+          num1: this.state.screen2,
+          screen: [this.state.screen2, lastOpp],
+          screen2: ""
+        }) 
+
+        
+      }
+  
+    }
+
+  
+  
+
+  check = async (e)=>{
+    await this.secondCheck(e);
   }
 
   equalsOrOpp =  async(event) => {
+    let e = event.target.innerText;
     await this.set(event);
     // console.log("num2 is now " + this.state.num2);
     
@@ -108,7 +121,7 @@ class App extends React.Component  {
             }) 
           }else{
 
-          this.check()
+          this.check(e)
           }
           break
         case 2:
@@ -120,7 +133,7 @@ class App extends React.Component  {
             }) 
           }else{
 
-            this.check()
+            this.check(e)
           }
           break
         case 3:
@@ -133,7 +146,7 @@ class App extends React.Component  {
           }
           else{
 
-            this.check()
+            this.check(e)
           }
           break
         case 4:
@@ -145,13 +158,23 @@ class App extends React.Component  {
             }) 
           }else{
 
-            this.check()
+            this.check(e)
           }
           break
         default:
             console.log("Default Triggered")
           break;
       }
+
+      console.log(` num1 is ${this.state.num1}`);
+      console.log(` num2 is ${this.state.num2}`);
+
+      console.log(` opp is ${this.state.opp}`);
+
+      console.log(` screen is ${this.state.screen}`);
+
+      console.log(`screen2 is ${this.state.screen2}`);
+
 
     } 
   
